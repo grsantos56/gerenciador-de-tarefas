@@ -1,0 +1,172 @@
+/*Registro.css
+  Estilos para a página de registro do Gerenciador de Tarefas.
+  Define o layout, cores, fontes e animações para uma experiência de usuário agradável.
+*/
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  background-color: #f0f2f5; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  overflow: hidden; 
+}
+
+/* Container principal para o registro */
+
+.registro-container { 
+  background-color: #ffffff; 
+  padding: 40px;
+  border-radius: 12px; 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+  width: 100%;
+  max-width: 420px;
+  height: auto; 
+  text-align: center;
+  box-sizing: border-box;
+  animation: fadeIn 0.8s ease-out; 
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; 
+}
+
+
+.registro-container input[type="text"],
+.registro-container input[type="email"],
+.registro-container input[type="password"] {
+  padding: 14px 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registro-container input[type="text"]::placeholder,
+.registro-container input[type="email"]::placeholder,
+.registro-container input[type="password"]::placeholder {
+  color: #a0a0a0;
+}
+
+.registro-container input[type="text"]:focus,
+.registro-container input[type="email"]:focus,
+.registro-container input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+  background-color: #fff;
+}
+
+
+.registro-container button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 15px; 
+}
+
+
+.registro-container button[type="submit"] {
+  background-color: #28a745; 
+}
+
+.registro-container button[type="submit"]:hover {
+  background-color: #218838; 
+  transform: translateY(-2px);
+}
+
+
+.registro-container .voltar-button { 
+  background-color: #6c757d; 
+  margin-top: 0px; 
+}
+
+.registro-container .voltar-button:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
+.registro-container .voltar-button a { 
+  color: inherit; 
+  text-decoration: none; 
+  display: block; 
+}
+
+
+.error-message { 
+  color: #dc3545;
+  margin-top: 25px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .registro-container {
+    padding: 30px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  .registro-container input[type="text"],
+  .registro-container input[type="email"],
+  .registro-container input[type="password"] {
+    font-size: 0.9em;
+  }
+
+  .registro-container button {
+    font-size: 1em;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registro-container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  .registro-container input[type="text"],
+  .registro-container input[type="email"],
+  .registro-container input[type="password"] {
+    font-size: 0.9em;
+  }
+
+  .registro-container button {
+    font-size: 1em;
+    padding: 12px 20px;
+  }
+}

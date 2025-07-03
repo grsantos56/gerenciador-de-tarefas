@@ -1,0 +1,78 @@
+# version: '3.8'
+
+# Gerenciador de Tarefas - Docker Compose File
+# Este arquivo define os serviços necessários para rodar o gerenciador de tarefas, incluindo MySQL, Backend e Frontend.
+services:
+  # Serviço MySQL
+  # Utiliza a imagem oficial do MySQL 8.0
+  mysql:
+    image: mysql:8.0 
+    container_name: gerenciador-mysql
+    restart: always 
+    environment:
+      MYSQL_DATABASE: gerenciador 
+      MYSQL_ROOT_PASSWORD: 123456 
+      MYSQL_USER: user_app 
+      MYSQL_PASSWORD: password_app 
+      TZ: America/Sao_Paulo
+    ports:
+      - "3306:3306" 
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network 
+
+    
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p123456"] 
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s 
+
+
+  # Serviço Backend
+  # Utiliza o Dockerfile localizado na pasta backend
+  # Conecta ao MySQL e expõe a porta 8080
+  backend:
+    build: ./backend 
+    container_name: gerenciador-backend
+    ports:
+      - "8080:8080" 
+    environment: 
+      
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/gerenciador?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: user_app 
+      SPRING_DATASOURCE_PASSWORD: password_app 
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update 
+
+    depends_on:
+      mysql:
+        condition: service_healthy 
+    networks:
+      - app-network 
+    restart: on-failure 
+
+  # Serviço Frontend
+  # Utiliza o Dockerfile localizado na pasta frontend
+  # Conecta ao Backend e expõe a porta 5173
+  # Utiliza o Nginx para servir os arquivos estáticos do Vite
+  frontend:
+    build: ./frontend 
+    container_name: gerenciador-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend 
+    networks:
+      - app-network 
+    restart: always 
+
+
+volumes:
+  mysql_data:
+
+
+networks:
+  app-network:
+    driver: bridge 

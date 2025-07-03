@@ -1,0 +1,472 @@
+/*Tarefas.css
+ *  Estilos para a página de gerenciamento de tarefas do Gerenciador de Tarefas.
+ *  Define o layout, cores, fontes e animações para uma experiência de usuário agradável.
+ */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3f7ff;
+  margin: 0;
+  padding: 0;
+  color: #0f172a;
+}
+
+/*Container principal para as tarefas */
+
+.tarefas-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 40px); 
+  max-height: 90vh; 
+  min-height: 500px; 
+}
+
+/* Cabeçalho da página de tarefas */
+.header-tarefas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.welcome-message {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4f46e5;
+  margin: 0;
+}
+
+.logout-button {
+  background-color: #ef4444;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-bottom: 10px;
+}
+
+.logout-button:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+h2 {
+  text-align: center;
+  color: #4f46e5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.section-title { 
+  font-size: 1.3rem;
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #a78bfa; /
+}
+
+/* Estilos para o formulário de tarefas */
+
+.form-tarefa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: #fcfcfc;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label { 
+  font-size: 0.9rem;
+  color: #4f46e5;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-tarefa input,
+.form-tarefa select {
+  padding: 12px 15px;
+  border: 1px solid #c9d2da;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-tarefa input::placeholder {
+  color: #a0a0a0;
+  opacity: 0.8;
+}
+
+.form-tarefa input:focus,
+.form-tarefa select:focus {
+  border-color: #7c3aed;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.form-tarefa button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  color: white;
+  font-weight: bold;
+  flex-grow: 1;
+  min-width: 120px;
+}
+
+.form-tarefa button:hover {
+  transform: translateY(-2px);
+}
+
+.submit-button {
+  background-color: #4f46e5;
+}
+
+.submit-button:hover {
+  background-color: #4338ca;
+}
+
+.toggle-button {
+  background-color: #7c3aed;
+}
+
+.toggle-button:hover {
+  background-color: #6d28d9;
+}
+
+.erro-data {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin: 5px 0;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* Estilos para a tabela de tarefas */
+
+.table-container {
+  flex: 1; 
+  overflow-y: auto; 
+  margin-top: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+
+.tabela-tarefas {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  min-width: 600px;
+  margin: 0;
+}
+
+
+.tabela-tarefas thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #e2e8f0; 
+}
+
+.tabela-tarefas thead tr {
+  background-color: #e2e8f0;
+}
+
+.tabela-tarefas th {
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+  text-transform: uppercase;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.tabela-tarefas th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.tabela-tarefas th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.tabela-tarefas tbody tr {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tabela-tarefas tbody tr:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-tarefas td {
+  padding: 12px 15px;
+  border: none;
+  vertical-align: middle;
+}
+
+.tabela-tarefas td[data-label="Data Inicial"],
+.tabela-tarefas td[data-label="Data Final"] {
+  line-height: 1.4; 
+}
+
+
+.tabela-tarefas td:first-child {
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.tabela-tarefas td:last-child {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.tabela-tarefas .acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabela-tarefas button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  min-width: 30px;
+}
+
+.tabela-tarefas button:hover {
+  transform: translateY(-1px);
+}
+
+.btn-editar {
+  background-color: #fdbe51;
+}
+
+.btn-editar:hover {
+  background-color: #f59a31;
+}
+
+.btn-deletar {
+  background-color: #ef4444;
+}
+
+.btn-deletar:hover {
+  background-color: #dc2626;
+}
+
+.btn-concluir {
+  background-color: #22c55e;
+}
+
+.btn-concluir:hover {
+  background-color: #16a34a;
+}
+
+.no-tasks-message {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #6c757d;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+  .tarefas-container {
+    height: auto; 
+    min-height: 100vh; 
+    margin: 5px;
+    padding: 50px;
+    overflow-y: auto; 
+  }
+
+  .form-tarefa {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .form-actions {
+    justify-content: center;
+  }
+
+  .form-tarefa button {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .header-tarefas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .welcome-section {
+    align-items: flex-start;
+  }
+  .table-container {
+    margin-top: 10px;
+    padding: 10px;
+    min-height: 25vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .tarefas-container {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .form-tarefa {
+    padding: 10px;
+  }
+
+  .form-tarefa input,
+  .form-tarefa select {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .table-container {
+    overflow-x: auto; 
+  }
+
+  .tabela-tarefas {
+    min-width: 100%; 
+  }
+
+  .tabela-tarefas th,
+  .tabela-tarefas td {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .tabela-tarefas td {
+    display: block;
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-bottom: 1px solid #eee;
+  }
+
+  .tabela-tarefas td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: left;
+    color: #4f46e5;
+  }
+
+  .tabela-tarefas tr {
+    margin-bottom: 15px;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .tabela-tarefas thead {
+    display: none;
+  }
+
+  .tabela-tarefas td:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .tabela-tarefas td:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom: none;
+  }
+
+  .acoes {
+    justify-content: flex-end !important;
+  }
+}
