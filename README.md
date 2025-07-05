@@ -154,7 +154,9 @@ A documentação permite visualizar todos os endpoints disponíveis, seus métod
 - git
 - Docker + Docker Compose instalados
 - Gerenciador Maven suportando o comando mvn no terminal
+- Node com suporte ao comando npm pelo terminal
 
+Este programa utiliza as seguintes portas: 5173 (front-end), 8080 (back-end), 3306 (banco de dados). Portanto certifique-se de que nenhuma dessas portas estejam sendo usadas durante o build da aplicação
 
 ### Execução do programa
 
